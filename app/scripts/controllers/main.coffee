@@ -4,9 +4,9 @@ angular.module('actegrateApp')
   .controller 'MainCtrl', ($scope, $rootScope, $location, $cookies, $http) ->
     $rootScope.title = 'Welcome'
     $scope.showNav = false
+    $scope.current_user = $cookies.get('current_user')
     if $cookies.get('current_user') != undefined
         $scope.showNav = true
-        $location.path 'profile'
     else
         $location.path '/'
     $scope.next = (hide) ->

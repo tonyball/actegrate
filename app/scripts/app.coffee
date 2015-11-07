@@ -14,9 +14,6 @@ angular
       .when '/',
         templateUrl: 'views/main.html'
         controller: 'MainCtrl'
-      .when '/profile',
-        templateUrl: 'views/profile.html'
-        controller: 'ProfileCtrl'
       .when '/profile/:username',
         templateUrl: 'views/profile.html'
         controller: 'ProfileCtrl'

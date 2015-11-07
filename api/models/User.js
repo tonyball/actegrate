@@ -10,7 +10,7 @@ var UserSchema = new mongoose.Schema({
 	school: String,
 	role: Boolean,
 	gender: String,
-	birthdate: String,
+	birthdate: Date,
 	tel: String,
 	education_level: String,
 	bio: String,

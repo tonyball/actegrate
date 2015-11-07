@@ -1,11 +1,15 @@
 center
-  img(src="images/logo-square.png" width="25%" ng-class="{'fadeOutUp': isRegister, 'fadeInDown': !isRegister}").animated.fadeInDown.logo
-  br
-  button(style="margin-right:20px" ng-click="isRegister = true; next(true);" ng-class="{'fadeOut': isRegister, 'fadeOutLeft': isLogin}").animated.fadeInLeft.btn.green.waves-effect.waves-light.mainBtn Be a new 
-    strong
-      b A
-    | ctegrator!
-  a(ng-click="isLogin = true; next(false);" ng-class="{'fadeOutRight': isRegister, 'fadeOut': isLogin}").animated.fadeInRight.btn.blue.waves-effect.waves-light.mainBtn Login
+	img(src="images/logo-square.png" width="25%" ng-class="{'fadeOutUp': isRegister, 'fadeInDown': !isRegister}").animated.fadeInDown.logo
+	br
+	button(style="margin-right:20px" ng-click="isRegister = true; next(true);" ng-class="{'fadeOut': isRegister, 'fadeOutLeft': isLogin}" ng-show="current_user == undefined").animated.fadeInLeft.btn.green.waves-effect.waves-light.mainBtn Be a new 
+		strong
+			b A
+		| ctegrator!
+	a(ng-click="isLogin = true; next(false);" ng-show="current_user == undefined" ng-class="{'fadeOutRight': isRegister, 'fadeOut': isLogin}").animated.fadeInRight.btn.blue.waves-effect.waves-light.mainBtn Login
 
-  register-form(ng-show="isRegister")
-  login-form(ng-show="isLogin")
+  
+	div(ng-hide="current_user == undefined").animated.zoomIn
+		h5 Welcome! {{current_user}}
+		h4 Are your ready to Learn?
+	register-form(ng-show="isRegister")
+	login-form(ng-show="isLogin")

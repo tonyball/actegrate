@@ -30,7 +30,7 @@ nav.white(ng-controller="NavbarCtrl")
 					img(src="https://maxcdn.icons8.com/Color/PNG/48/Science/school-48.png" title="School" width="36")
 					span(ng-show="showCoursesText || isActive('/courses')")  Courses
 			li(ng-class="{'active': isActive('/profile')}" ng-mouseenter="showProfileText = true" ng-mouseleave="showProfileText = false").waves-effect.waves-green
-				a(href="#/profile").black-text
+				a(href="#/profile/{{user_info.username}}").black-text
 					img(src="https://maxcdn.icons8.com/Color/PNG/48/Users/student-48.png" title="Student" width="36")
 					span(ng-show="showProfileText || isActive('/profile')")  {{user_info.firstname+' '+user_info.lastname | uppercase}}
 			li(ng-class="{'active': isActive('/dashboard')}" ng-mouseenter="showDashboardText = true" ng-mouseleave="showDashboardText = false").waves-effect.waves-green

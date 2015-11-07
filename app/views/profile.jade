@@ -7,8 +7,10 @@
 		.divider(style="margin-bottom:15px")
 		.row
 			.col.m3.sidenav
-				center
+				center(ng-show="current_user == user_info.username")
 					img(ng-src="images/avatars/{{user_info.avatar}}" alt="profile image" width="128px" height="128px" data-position="right" data-delay="50" data-tooltip="change avatar").thumbnail.tooltipped
+				center(ng-hide="current_user == user_info.username")
+					img(ng-src="images/avatars/{{user_info.avatar}}" alt="profile image" width="128px" height="128px").thumbnail
 				br
 				a(href="{{user_info.fb_link}}" ng-show="user_info.fb_link != undefined && user_info.fb_link != ''")
 					img(src="https://maxcdn.icons8.com/Color/PNG/48/Social_Networks/facebook-48.png" title="Facebook" width="36")
@@ -34,10 +36,19 @@
 					| Discussion
 				.divider
 				button(ng-click="clicked($event)").btn-flat.btn-block.waves-effect.waves-green.link-btn
+					img(src="https://maxcdn.icons8.com/Color/PNG/48/Science/exam-48.png" title="Exam" width="34").left
+					| Graded Work
+				.divider
+				button(ng-click="clicked($event)").btn-flat.btn-block.waves-effect.waves-green.link-btn
 					img(src="https://maxcdn.icons8.com/Color/PNG/48/Sports/leaderboard-48.png" title="Leaderboard" width="34").left
 					| Friends Leaderboard
 			.col.m9.user-profile-form
-				a(ng-click="isEdit = true" ng-show="current_user == user_info.username" ng-hide="isEdit").btn.blue.right Edit Profile
+				a(ng-click="isEdit = true" ng-show="current_user == user_info.username" ng-hide="isEdit").btn.blue.right 
+					.fa.fa-edit.fa-lg
+					|  Edit Profile
+				a(ng-click="addFriend()" ng-hide="current_user == user_info.username").btn.blue.right 
+					.fa.fa-user-plus.fa-lg
+					|  Add Friend
 				br
 				br
 				form(name="userProfileForm" ng-submit="saveProfile()" ng-init="isEdit = false")
@@ -70,7 +81,7 @@
 								option(value="Doctoral") Doctoral Degree (Ph.D)
 						.input-field.col.s12
 							small.grey-text Birthdate
-							input(type="datetime" ng-model="user_info.birthdate")
+							input(type="date" ng-model="user_info.birthdate")
 						.input-field.col.s6
 							small.grey-text Location
 							input(type="text" id="location" ng-model="user_info.location")
@@ -81,7 +92,7 @@
 							small.grey-text Bio (About Me)
 							textarea.materialize-textarea(id="textarea" length="160" ng-model="user_info.bio").validate
 							label(for="textarea" data-error="maximum 160 characters")
-						.card-title.black-text Contacts
+						.card-title.black-text(ng-show="isEdit || user_info.email.show") Contacts
 						div(ng-show="isEdit || user_info.email.show")
 							.input-field.col.s9
 								small.grey-text E-Mail
@@ -98,7 +109,9 @@
 								input(type="url" ng-model="user_info.ig_link" placeholder="http://www.instagram.com/yourusername")
 							.input-field.col.s12
 								small.grey-text Twitter Account
-								input(type="url" ng-model="user_info.tw_link" placeholder="@username")
+								input(type="text" ng-model="user_info.tw_link" placeholder="@username")
 					center
 						.row
-						button(type="submit" ng-click="isEdit = false" ng-show="isEdit" ng-hide="!isEdit").btn.green Update
+						button(type="submit" ng-click="isEdit = false" ng-show="isEdit" ng-hide="!isEdit").btn.green
+							.fa.fa-save.fa-lg
+							|  Update
