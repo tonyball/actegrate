@@ -1,53 +1,78 @@
+theme-color-green = #4caf50
+theme-color-blue = #2196F3
+theme-color-brown = #795548
+
 body
-  padding-top 20px
-  padding-bottom 20px
+  display flex
+  min-height 100vh
+  flex-direction column
 
-.header,
-.marketing,
-.footer
-  padding-left 15px
-  padding-right 15px
+main
+  flex 1 0 auto
+  
+.btn, .btn-large, .btn-flat
+	text-transform none !important
 
-.header
-  border-bottom 1px solid #e5e5e5
-  margin-bottom 30px
-  h3
-    margin-top 0
-    margin-bottom 0
-    line-height 40px
-    padding-bottom 19px
+.btn-block
+	width: 100%
 
-.footer
-  padding-top 19px
-  color #777
-  border-top 1px solid #e5e5e5
+[type="checkbox"].filled-in:checked+label:after
+	border 2px solid theme-color-green !important
+	background-color theme-color-green !important
 
-@media (min-width:768px)
-  .container
-    max-width 730px
+.input-field .prefix.active
+	color theme-color-blue !important
 
-@media screen and (min-width: 768px)
-  .header,
-  .marketing,
-  .footer
-    padding-left 0
-    padding-right 0
+input[type=text]:focus:not([readonly])+label, input[type=password]:focus:not([readonly])+label, input[type=email]:focus:not([readonly])+label, input[type=url]:focus:not([readonly])+label, input[type=time]:focus:not([readonly])+label, input[type=date]:focus:not([readonly])+label, input[type=datetime-local]:focus:not([readonly])+label, input[type=tel]:focus:not([readonly])+label, input[type=number]:focus:not([readonly])+label, input[type=search]:focus:not([readonly])+label, textarea.materialize-textarea:focus:not([readonly])+label
+	color theme-color-blue !important
 
-.container-narrow
-  & > hr
-    margin 30px 0
+input[type=text]:focus:not([readonly]), input[type=password]:focus:not([readonly]), input[type=email]:focus:not([readonly]), input[type=url]:focus:not([readonly]), input[type=time]:focus:not([readonly]), input[type=date]:focus:not([readonly]), input[type=datetime-local]:focus:not([readonly]), input[type=tel]:focus:not([readonly]), input[type=number]:focus:not([readonly]), input[type=search]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly])
+	border-bottom 1px solid theme-color-blue !important
+	box-shadow 0 1px 0 0 theme-color-blue !important
 
-.jumbotron
-  text-align center
-  border-bottom 1px solid #e5e5e5
-  border-bottom 0
-  .btn
-    font-size 21px
-    padding 14px 24px
+input[type=text]+label:after, input[type=password]+label:after, input[type=email]+label:after, input[type=url]+label:after, input[type=time]+label:after, input[type=date]+label:after, input[type=datetime-local]+label:after, input[type=tel]+label:after, input[type=number]+label:after, input[type=search]+label:after, textarea.materialize-textarea+label:after
+	width 500px !important
+	text-align left
 
-.marketing
-  margin 40px 0
-  p
-    & + h4
-      margin-top 28px
+input[type=search]+label:after, textarea.materialize-textarea+label:after
+	top 110px !important
 
+.dropdown-content
+	min-width 125px !important
+	
+.browser-default
+	border 1px solid theme-color-blue
+
+.notification-icon:hover
+	-webkit-transform rotate(20deg)
+	transform rotate(20deg)
+
+.notification-header
+	max-height 20px !important
+
+#notification-dropdown
+	min-width 300px !important
+
+.link-btn:hover
+	background-color whitesmoke
+
+nav ul li.active, button.active
+	background-color theme-color-green !important
+	color white !important
+	a
+		color white !important
+
+nav ul li
+	a
+		img
+			margin-bottom -10px
+			
+img.thumbnail
+	border 1px solid lightgray
+	border-radius 10px
+	background-color whitesmoke
+	padding 5px
+	
+img.thumbnail:hover
+	cursor pointer
+	

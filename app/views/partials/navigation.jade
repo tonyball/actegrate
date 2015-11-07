@@ -1,0 +1,48 @@
+ul#dropdown.dropdown-content
+	li
+		a(href="#/help").black-text
+			img(src="https://maxcdn.icons8.com/Color/PNG/48/Programming/help-48.png" title="Help" width="36")
+			|  Help
+	li
+		a(href="" ng-click="logout()").black-text
+			img(src="https://maxcdn.icons8.com/Color/PNG/48/Household/door-48.png" title="Door" width="36")
+			|  Logout
+
+ul#notification-dropdown.dropdown-content
+	.notification-header 
+		h6.center-align.black-text 
+			b Notifications
+	.divider
+	li.notification-item
+		a(href="").black-text 
+			small there is no notification
+
+nav.white(ng-controller="NavbarCtrl")
+	.nav-wrapper
+		a(href="#/").brand-logo
+			img(src="images/logo-rectangle.png" height="64px")
+		ul.right.hide-on-small-only
+			li
+				a(href="" data-activates="notification-dropdown" data-beloworigin="true").notification-button
+					img(src="https://maxcdn.icons8.com/Color/PNG/48/Messaging/appointment_reminders-48.png" title="Appointment Reminders" width="36").notification-icon
+			li(ng-class="{'active': isActive('/courses')}" ng-mouseenter="showCoursesText = true" ng-mouseleave="showCoursesText = false").waves-effect.waves-green
+				a(href="#/courses").black-text
+					img(src="https://maxcdn.icons8.com/Color/PNG/48/Science/school-48.png" title="School" width="36")
+					span(ng-show="showCoursesText || isActive('/courses')")  Courses
+			li(ng-class="{'active': isActive('/profile')}" ng-mouseenter="showProfileText = true" ng-mouseleave="showProfileText = false").waves-effect.waves-green
+				a(href="#/profile").black-text
+					img(src="https://maxcdn.icons8.com/Color/PNG/48/Users/student-48.png" title="Student" width="36")
+					span(ng-show="showProfileText || isActive('/profile')")  {{user_info.firstname+' '+user_info.lastname | uppercase}}
+			li(ng-class="{'active': isActive('/dashboard')}" ng-mouseenter="showDashboardText = true" ng-mouseleave="showDashboardText = false").waves-effect.waves-green
+				a(href="#/dashboard").black-text
+					img(src="https://maxcdn.icons8.com/Color/PNG/48/Science/class-48.png" title="Class" width="36")
+					span(ng-show="showDashboardText || isActive('/dashboard')")  Dashboard
+			li
+				a(href="" data-activates="dropdown" data-beloworigin="true").dropdown-button
+					img(src="https://maxcdn.icons8.com/Android_L/PNG/48/User_Interface/menu_2-48.png" title="Menu 2" width="36")
+
+		ul.left.hide-on-med-and-up
+			li(ng-mouseenter="showMenuText = true" ng-mouseleave="showMenuText = false")
+				a(href="" ng-click="isCourse = false").black-text
+					.fa.fa-lg.fa-bars
+					span(ng-show="showMenuText")  Menu

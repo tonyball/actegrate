@@ -1,7 +1,7 @@
 {
   "name": "actegrate",
   "version": "0.0.0",
-  "description":"server side dependencies for actegrate moocs project",
+  "description": "server side dependencies for actegrate moocs project",
   "dependencies": {
     "json3": "latest",
     "es5-shim": "latest",
@@ -11,7 +11,9 @@
     "angular-resource": "latest",
     "angular-route": "latest",
     "angular-sanitize": "latest",
-    "angular-touch": "latest"
+    "angular-touch": "latest",
+    "animate.css": "latest",
+    "jquery": "latest"
   },
   "devDependencies": {
     "angular-mocks": "1.2.15",

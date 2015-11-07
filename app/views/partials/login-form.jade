@@ -1,0 +1,23 @@
+.row.animated.fadeInDown
+	.card.col.s12.m8.l4.offset-m2.offset-l4
+		.card-content
+			//- a(href="" style="margin-right: 10px").btn.indigo.darken-2.fa.fa-facebook-official  Facebook
+			//- a(href="").btn.red.darken-1.fa.fa-google-plus-square  Google
+			.row
+			.chip.red-text.red.lighten-4(ng-show="showFlash" style="margin-bottom:10px") {{flash_text}}
+				a.fa.fa-close.red-text(href="" ng-click="showFlash = false" style="margin-left:10px")
+			form(name="loginForm" ng-submit="login()")
+				.input-field.col.s12
+					img(src="https://maxcdn.icons8.com/Color/PNG/48/Business/businessman-48.png" width="24").prefix
+					input(type="text" id="username" ng-model="username" required)
+					label(for="username") Username
+				.input-field.col.s12
+					img(src="https://maxcdn.icons8.com/Color/PNG/48/Security/password_1-48.png" width="24").prefix
+					input(type="password" id="password" ng-model="password" required)
+					label(for="password") Password
+				small
+					a(href="" ng-click="forgotPassword()").right forgot password?
+				.row
+				button(type="submit").btn.brown.btn-block LOGIN
+			br
+			a(href="" ng-click="isLogin = false; back();").grey-text Go Back

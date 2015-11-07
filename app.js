@@ -14,7 +14,7 @@ mongoose.connect('mongodb://admin:adminactegrate940516@ds049624.mongolab.com:496
   if(err){
     console.log('database connection error', err);
   } else {
-    console.log('database connection successful');
+    console.log('actegrate<->database successful');
   }
 });
 
@@ -56,4 +56,4 @@ app.use(function(req, res, next) {
 });
 
 app.listen(port);
-console.log('server is listening on port '+port);
+console.log('actegrate<->server is listening on port '+port);

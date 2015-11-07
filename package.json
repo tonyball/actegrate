@@ -8,6 +8,8 @@
     "debug": "latest",
     "express": "latest",
     "morgan": "latest",
+    "mongoose": "latest",
+    "bcrypt-nodejs": "latest",
     "serve-favicon": "latest"
   },
   "devDependencies": {
