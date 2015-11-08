@@ -11,11 +11,6 @@ angular.module('actegrateApp')
   			$scope.user_info.total_points += p
   		$rootScope.title = '@'+$scope.user_info.username
 
-  	$scope.clicked = ($event) ->
-  		current = $event.target
-  		angular.element('.link-btn').removeClass('active')
-  		angular.element(current).addClass('active')
-  		return false
   	$scope.saveProfile = ->
   		$scope.user_info.birthdate = new Date($scope.user_info.birthdate)
   		$http.put('http://localhost/users/'+$scope.current_user, $scope.user_info).success (data) ->

@@ -1,5 +1,6 @@
 var express = require('express');
 var bcrypt = require('bcrypt-nodejs');
+var fs = require('fs');
 
 var router = express.Router();
 
@@ -50,6 +51,32 @@ router.post('/register', function (req, res, next){
 			if (err) return next(err);
 			res.json(user);
 		});
+	});
+});
+
+//image decoding funciton
+function decodeBase64Image(dataString) {
+  var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
+    response = {};
+
+  if (matches.length !== 3) {
+    return new Error('Invalid input string');
+  }
+
+  response.type = matches[1];
+  response.data = new Buffer(matches[2], 'base64');
+
+  return response;
+}
+
+
+/* POST /image user file */
+router.post('/avatar', function (req, res, next){
+	var imageBuffer = decodeBase64Image(req.body.file);
+	fs.writeFile('/Users/iTOUCH/actegrate/app/images/avatars/'+req.body.name, imageBuffer.data , 'utf-8', function (err) {
+		if (err) 
+		  throw err;
+		res.end();
 	});
 });
 

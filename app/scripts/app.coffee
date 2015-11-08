@@ -7,7 +7,8 @@ angular
     'ngSanitize',
     'ngRoute',
     'ngTouch',
-    'ngAnimate'
+    'ngAnimate',
+    'ngImgCrop'
   ])
   .config ($routeProvider,$locationProvider) ->
     $routeProvider

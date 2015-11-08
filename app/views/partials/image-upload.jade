@@ -1,0 +1,19 @@
+.col.m9.upload-image-form.animated.fadeInLeft
+	form(name="uploadForm" ng-submit="upload()")
+		.card-title.black-text Upload your Avatar
+		.file-field.input-field
+			.btn.brown
+				span Select Image
+				input(type="file" accept="image/*" id="imageUploader")
+			.file-path-wrapper
+				input(type="text" name="imageUploader" ng-model="image_name").file-path.validate
+		center
+			.cropArea(ng-show="image_name != undefined")
+				img-crop(image="image" result-image="croppedImage" area-type="square")
+			.row
+			a(href="" ng-click="image = ''; croppedImage = ''; image_name = undefined" ng-show="image_name != undefined").btn.red
+				.fa.fa-trash.fa-lg
+				|  Remove
+			button(type="submit" ng-disabled="image_name == undefined").btn.green
+				.fa.fa-upload.fa-lg
+				|  Upload

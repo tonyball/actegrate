@@ -5,12 +5,13 @@
 				.right.blue-text Actecoins: {{user_info.points[0]}} 
 					img(src="https://maxcdn.icons8.com/Color/PNG/48/Ecommerce/expensive_2-48.png" title="actecoins" width="24")
 		.divider(style="margin-bottom:15px")
-		.row
+		.row(ng-init="showing = 'user-profile'")
 			.col.m3.sidenav
-				center(ng-show="current_user == user_info.username")
-					img(ng-src="images/avatars/{{user_info.avatar}}" alt="profile image" width="128px" height="128px" data-position="right" data-delay="50" data-tooltip="change avatar").thumbnail.tooltipped
+				center(ng-show="current_user == user_info.username" ng-click="showing = 'image-upload'")
+					img(src="https://maxcdn.icons8.com/Color/PNG/48/Photo_Video/edit_image-48.png" title="Edit Image" width="48" ng-show="showEdit" ng-mouseenter="showEdit = true").edit-image-icon
+					img(ng-src="images/avatars/{{user_info.avatar}}" alt="profile image" width="148px" height="148px" data-position="right" data-delay="50" data-tooltip="change avatar" ng-mouseleave="showEdit = false" ng-mouseenter="showEdit = true").thumbnail.tooltipped.hoverable
 				center(ng-hide="current_user == user_info.username")
-					img(ng-src="images/avatars/{{user_info.avatar}}" alt="profile image" width="128px" height="128px").thumbnail
+					img(ng-src="images/avatars/{{user_info.avatar}}" alt="profile image" width="148px" height="148px").thumbnail
 				br
 				a(href="{{user_info.fb_link}}" ng-show="user_info.fb_link != undefined && user_info.fb_link != ''")
 					img(src="https://maxcdn.icons8.com/Color/PNG/48/Social_Networks/facebook-48.png" title="Facebook" width="36")
@@ -19,99 +20,34 @@
 				a(href="http://twitter.com/{{user_info.tw_link}}" ng-show="user_info.tw_link != undefined && user_info.tw_link != ''")
 					img(src="https://maxcdn.icons8.com/Color/PNG/48/Social_Networks/twitter-48.png" title="Twitter" width="36")
 				br
-				button(ng-click="clicked($event)").btn-flat.btn-block.waves-effect.waves-green.link-btn.active
+				button(ng-click="showing = 'user-profile'" ng-class="{'active':showing == 'user-profile'}").btn-flat.btn-block.waves-effect.waves-green.link-btn.active
 					img(src="https://maxcdn.icons8.com/Color/PNG/48/Messaging/contact_card-48.png" title="Contact Card" width="34").left
 					| Profile Summary
 				.divider
-				button(ng-click="clicked($event)").btn-flat.btn-block.waves-effect.waves-green.link-btn
+				button(ng-click="showing = 'recent-activity'" ng-class="{'active':showing == 'recent-activity'}").btn-flat.btn-block.waves-effect.waves-green.link-btn
 					img(src="https://maxcdn.icons8.com/Color/PNG/48/User_Interface/details-48.png" title="Details" width="34").left
 					| Recent Activity
 				.divider
-				button(ng-click="clicked($event)").btn-flat.btn-block.waves-effect.waves-green.link-btn
+				button(ng-click="showing = 'cards-collection'" ng-class="{'active':showing == 'cards-collection'}").btn-flat.btn-block.waves-effect.waves-green.link-btn
 					img(src="https://maxcdn.icons8.com/Color/PNG/48/Gaming/cards-48.png" title="Cards" width="34").left
 					| Cards Collection
 				.divider
-				button(ng-click="clicked($event)").btn-flat.btn-block.waves-effect.waves-green.link-btn
+				button(ng-click="showing = 'discussion'" ng-class="{'active':showing == 'discussion'}").btn-flat.btn-block.waves-effect.waves-green.link-btn
 					img(src="https://maxcdn.icons8.com/Color/PNG/48/Messaging/speech_bubble-48.png" title="Speech Bubble" width="34").left
 					| Discussion
 				.divider
-				button(ng-click="clicked($event)").btn-flat.btn-block.waves-effect.waves-green.link-btn
+				button(ng-click=";showing = 'graded-work'" ng-class="{'active':showing == 'graded-work'}").btn-flat.btn-block.waves-effect.waves-green.link-btn
 					img(src="https://maxcdn.icons8.com/Color/PNG/48/Science/exam-48.png" title="Exam" width="34").left
 					| Graded Work
 				.divider
-				button(ng-click="clicked($event)").btn-flat.btn-block.waves-effect.waves-green.link-btn
+				button(ng-click="showing = 'friends-leaderboard'" ng-class="{'active':showing == 'friends-leaderboard'}").btn-flat.btn-block.waves-effect.waves-green.link-btn
 					img(src="https://maxcdn.icons8.com/Color/PNG/48/Sports/leaderboard-48.png" title="Leaderboard" width="34").left
 					| Friends Leaderboard
-			.col.m9.user-profile-form
-				a(ng-click="isEdit = true" ng-show="current_user == user_info.username" ng-hide="isEdit").btn.blue.right 
-					.fa.fa-edit.fa-lg
-					|  Edit Profile
-				a(ng-click="addFriend()" ng-hide="current_user == user_info.username").btn.blue.right 
-					.fa.fa-user-plus.fa-lg
-					|  Add Friend
-				br
-				br
-				form(name="userProfileForm" ng-submit="saveProfile()" ng-init="isEdit = false")
-					fieldset(ng-disabled="!isEdit")
-						.card-title.black-text Public Profile
-						.input-field.col.s6
-							small.grey-text Firstname
-							input(type="text" id="firstname" ng-model="user_info.firstname")
-						.input-field.col.s6
-							small.grey-text Lastname
-							input(type="text" id="lastname" ng-model="user_info.lastname")
-						.input-field.col.s6
-							small.grey-text Gender
-							select(ng-model="user_info.gender").browser-default
-								option(value="" disabled selected) Select your gender
-								option(value="Male") Male
-								option(value="Female") Female
-								option(value="Other") Other
-						.input-field.col.s6
-							small.grey-text Education Level
-							select(ng-model="user_info.education_level").browser-default
-								option(value="" disabled selected) Select your highest education
-								option(value="Elementary") Elementary
-								option(value="Middle School") Middle School
-								option(value="High School") High School
-								option(value="Vocational School") Vocational School
-								option(value="College") College
-								option(value="Undergraduate") Undergraduate (Bacherlor's)
-								option(value="Graduate") Graduate (Master's)
-								option(value="Doctoral") Doctoral Degree (Ph.D)
-						.input-field.col.s12
-							small.grey-text Birthdate
-							input(type="date" ng-model="user_info.birthdate")
-						.input-field.col.s6
-							small.grey-text Location
-							input(type="text" id="location" ng-model="user_info.location")
-						.input-field.col.s6
-							small.grey-text School
-							input(type="text" id="school" ng-model="user_info.school")
-						.input-field.col.s12
-							small.grey-text Bio (About Me)
-							textarea.materialize-textarea(id="textarea" length="160" ng-model="user_info.bio").validate
-							label(for="textarea" data-error="maximum 160 characters")
-						.card-title.black-text(ng-show="isEdit || user_info.email.show") Contacts
-						div(ng-show="isEdit || user_info.email.show")
-							.input-field.col.s9
-								small.grey-text E-Mail
-								input(type="email" ng-model="user_info.email.address")
-						div(ng-show="isEdit")
-							.input-field.col.s3
-								input(type="checkbox" id="showEmail" ng-model="user_info.email.show").filled-in
-								label(for="showEmail") Show your email?
-							.input-field.col.s12
-								small.grey-text Facebook Account
-								input(type="url" ng-model="user_info.fb_link" placeholder="http://www.facebook.com/youraccout")
-							.input-field.col.s12
-								small.grey-text Instagram Account
-								input(type="url" ng-model="user_info.ig_link" placeholder="http://www.instagram.com/yourusername")
-							.input-field.col.s12
-								small.grey-text Twitter Account
-								input(type="text" ng-model="user_info.tw_link" placeholder="@username")
-					center
-						.row
-						button(type="submit" ng-click="isEdit = false" ng-show="isEdit" ng-hide="!isEdit").btn.green
-							.fa.fa-save.fa-lg
-							|  Update
+
+			image-upload(ng-show="showing == 'image-upload'")
+			user-profile(ng-show="showing == 'user-profile'")
+			activities(ng-show="showing == 'recent-activity'")
+			cards-collection(ng-show="showing == 'cards-collection'")
+			discussion(ng-show="showing == 'discussion'")
+			graded-work(ng-show="showing == 'graded-work'")
+			friends-leaderboard(ng-show="showing == 'friends-leaderboard'")

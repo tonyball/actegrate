@@ -11,6 +11,7 @@ head
   // build:css styles/vendor.css
   // bower:css
   link(rel='stylesheet', href='bower_components/animate.css/animate.css')
+  link(rel='stylesheet', href='bower_components/ng-img-crop/compile/minified/ng-img-crop.css')
   // endbower
   // endbuild
   // build:css(.tmp) styles/main.css
@@ -27,7 +28,7 @@ body.blue-grey.lighten-4
         strong A
         | ctegrate &copy 2015
         p Actegrate the Online Academic Integration website
-      a.right(href="https://icons8.com").grey-text.lighten-2 Icon pack by Icons8
+      a.right(href="https://icons8.com" target="_blank").grey-text.lighten-2 Icon pack by Icons8
 
 
   // Google Analytics: change UA-XXXXX-X to be your site's ID
@@ -57,6 +58,7 @@ body.blue-grey.lighten-4
   script(src='bower_components/angular-route/angular-route.js')
   script(src='bower_components/angular-sanitize/angular-sanitize.js')
   script(src='bower_components/angular-touch/angular-touch.js')
+  script(src='bower_components/ng-img-crop/compile/minified/ng-img-crop.js')
   // endbower
   // endbuild
 
@@ -68,6 +70,13 @@ body.blue-grey.lighten-4
   script(src="scripts/directives/login-form.js")
   script(src="scripts/controllers/profile.js")
   script(src="scripts/controllers/navbar.js")
+  script(src="scripts/directives/user-profile.js")
+  script(src="scripts/directives/cards-collection.js")
+  script(src="scripts/directives/discussion.js")
+  script(src="scripts/directives/graded-work.js")
+  script(src="scripts/directives/friends-leaderboard.js")
+  script(src="scripts/directives/activities.js")
+  script(src="scripts/directives/image-upload.js")
   // endbuild
 
   script(src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js")
