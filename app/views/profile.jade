@@ -2,7 +2,7 @@
 	.card.col.s12.l10.offset-l1
 		.card-content
 			span.card-title.black-text @{{user_info.username}}'s Profile
-				.right.blue-text Actecoins: {{user_info.points[0]}} 
+				.right.blue-text Actecoins: {{user_info.total_points}} 
 					img(src="https://maxcdn.icons8.com/Color/PNG/48/Ecommerce/expensive_2-48.png" title="actecoins" width="24")
 		.divider(style="margin-bottom:15px")
 		.row(ng-init="showing = 'user-profile'")
@@ -15,7 +15,7 @@
 				br
 				a(href="{{user_info.fb_link}}" ng-show="user_info.fb_link != undefined && user_info.fb_link != ''")
 					img(src="https://maxcdn.icons8.com/Color/PNG/48/Social_Networks/facebook-48.png" title="Facebook" width="36")
-				a(href="{{user_info.ig_link}}" ng-show="user_info.ig_link != undefined && user_info.ig_link != ''")
+				a(href="http://instagram/{{user_info.ig_link}}" ng-show="user_info.ig_link != undefined && user_info.ig_link != ''")
 					img(src="https://maxcdn.icons8.com/Color/PNG/48/Social_Networks/instagram-48.png" title="Instagram" width="36")
 				a(href="http://twitter.com/{{user_info.tw_link}}" ng-show="user_info.tw_link != undefined && user_info.tw_link != ''")
 					img(src="https://maxcdn.icons8.com/Color/PNG/48/Social_Networks/twitter-48.png" title="Twitter" width="36")

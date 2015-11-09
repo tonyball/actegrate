@@ -1,0 +1,47 @@
+.row
+	.card.col.s12.l10.offset-l1.animated.fadeInDown
+		.card-content(ng-init="showing = 'users'")
+			span.card-title.black-text Adminstration
+			.row
+			button(ng-click="showing = 'users'" ng-class="{'active':showing == 'users'}").btn-flat.waves-effect.waves-green
+				img(src="https://maxcdn.icons8.com/Color/PNG/48/Users/find_user-48.png" title="Find User" width="36").left
+				|  Users
+			button(ng-click="showing = 'courses'" ng-class="{'active':showing == 'courses'}").btn-flat.waves-effect.waves-green
+				img(src="https://maxcdn.icons8.com/Color/PNG/48/Science/courses-48.png" title="Courses" width="36").left
+				|  Courses
+			table.highlight.animated.fadeInDown(ng-show="showing == 'users'")
+				thead
+					th Username
+					th Firstname
+					th Lastname
+					th E-Mail
+					th Actions
+				tbody
+					tr(ng-repeat="u in users")
+						td {{u.username}}
+						td {{u.firstname}}
+						td {{u.lastname}}
+						td {{u.email.address}}
+						td
+							button(ng-click="makeToAdmin(u.username)").btn.orange Make Admin
+							button(ng-click="viewUser(u.username)").btn.green View
+							button(ng-click="deleteUser(u.username)").btn.red Delete
+			table.highlight.animated.fadeInDown(ng-show="showing == 'courses'")
+				thead
+					th Code
+					th Course Title
+					th Teacher Username
+					th Verification Code
+					th Actions
+				tbody
+					tr
+						td {{u.username}}
+						td {{u.firstname}}
+						td {{u.lastname}}
+						td {{u.email.address}}
+						td
+							button(ng-click="viewCourse()").btn.green View
+							button(ng-click="deactivateCourse()").btn.red Deactivate
+		.card-action
+			button(ng-show="showing == 'users'").btn.blue Create a User
+			button(ng-show="showing == 'courses'").btn.blue Create a Course
