@@ -1,15 +1,16 @@
 .row.animated.fadeInDown
 	.card.col.s12.m10.l6.offset-m1.offset-l3
 		.card-content
-			img(src="images/logo-rectangle.png" width="30%")
-			//- h5 Register with
-			//- a(href="" style="margin-right: 10px").btn.indigo.darken-2.fa.fa-facebook-official  Facebook
-			//- a(href="").btn.red.darken-1.fa.fa-google-plus-square  Google
-			//- .row
-			//- h5 or make your 
-			//- 	b 
-			//- 		b A
-			//- 	| ctegrator account
+			center
+				img(src="images/logo-rectangle.png" width="30%")
+				//- h5 Register with
+				//- a(href="" style="margin-right: 10px").btn.indigo.darken-2.fa.fa-facebook-official  Facebook
+				//- a(href="").btn.red.darken-1.fa.fa-google-plus-square  Google
+				//- .row
+				//- h5 or make your 
+				//- 	b 
+				//- 		b A
+				//- 	| ctegrator account
 			form(name="registerForm" ng-submit="register()")
 				.input-field.col.s6
 					img(src="https://maxcdn.icons8.com/Color/PNG/48/Very_Basic/contacts-48.png" title="Contacts" width="48").prefix
@@ -37,4 +38,5 @@
 				.row
 				button(type="submit" ng-hide="!registerForm.$valid").btn.brown.btn-block REGISTER as a new Actegrator!
 			br
-			a(href="" ng-click="isRegister = false; back();").grey-text Go Back
+			center
+				a(href="" ng-click="isRegister = false; back();").grey-text Go Back

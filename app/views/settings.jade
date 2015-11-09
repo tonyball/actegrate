@@ -1,0 +1,39 @@
+.row
+	.card.col.s12.l10.offset-l1.animated.zoomIn
+		.card-content
+			span.card-title.black-text Change Password
+			br
+			div(ng-hide="isCorrect")
+				.input-field.col.s12.m6
+					input(type="password" id="oldpassword" ng-model="oldpassword")
+					label(for="oldpassword") Current Password
+				br
+				button(ng-click="checkOldPassword()" ng-disabled="oldpassword == '' || oldpassword == undefined").btn.brown.waves-effect.waves-light Check
+			.row
+			div(ng-show="isCorrect").animated.zoomIn
+				.input-field.col.s12.m6
+					input(type="password" id="newpassword" ng-model="newpassword")
+					label(for="newpassword") New Password
+				.input-field.col.s12.m6
+					input(type="password" id="confirm" ng-model="confirm")
+					label(for="confirm") Confirm Password
+				br
+				button(ng-hide="newpassword == confirm" ng-disabled="newpassword != confirm").btn Not Match
+				button(ng-click="savePassword()" ng-show="newpassword == confirm").btn.blue.waves-light.waves-effect Update
+			.row
+			.divider
+			.row
+			span.card-title.black-text Delete your 
+				b A
+				| ctegrator Accout
+			fieldset(ng-init="delBtn = true")
+				center
+					div(ng-show="toDelete").animated.fadeIn
+						.input-field.col.s12.m6
+							input(type="password" id="password" ng-model="passwordtodelete")
+							label(for="password") Your Password
+						br
+						button(ng-click="confirmDeletion()" ng-disabled="passwordtodelete == '' || passwordtodelete == undefined").btn.red.waves-effect.waves-light Confirm
+						button(ng-click="delBtn = true; toDelete = false").btn.green.waves-effect.waves-light Back
+					button(ng-click="toDelete = true; delBtn = false" ng-show="delBtn").btn.red.waves-effect.waves-light Delete Accout
+			.row

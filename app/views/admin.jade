@@ -1,31 +1,43 @@
 .row
 	.card.col.s12.l10.offset-l1.animated.fadeInDown
 		.card-content(ng-init="showing = 'users'")
-			span.card-title.black-text Adminstration
+			span.card-title.black-text Administration
 			.row
-			button(ng-click="showing = 'users'" ng-class="{'active':showing == 'users'}").btn-flat.waves-effect.waves-green
+			button(ng-click="showing = 'users'" ng-class="{'active':showing == 'users' || showing == 'users-crud-form'}").btn-flat.waves-effect.waves-green
 				img(src="https://maxcdn.icons8.com/Color/PNG/48/Users/find_user-48.png" title="Find User" width="36").left
 				|  Users
-			button(ng-click="showing = 'courses'" ng-class="{'active':showing == 'courses'}").btn-flat.waves-effect.waves-green
+			button(ng-click="showing = 'courses'" ng-class="{'active':showing == 'courses' || showing == 'courses-crud-form'}").btn-flat.waves-effect.waves-green
 				img(src="https://maxcdn.icons8.com/Color/PNG/48/Science/courses-48.png" title="Courses" width="36").left
 				|  Courses
-			table.highlight.animated.fadeInDown(ng-show="showing == 'users'")
-				thead
-					th Username
-					th Firstname
-					th Lastname
-					th E-Mail
+			.input-field.col.s12(ng-show="showing == 'users' || showing == 'courses'")
+				i.fa.fa-search.prefix
+				input(type="text" id="searchQuery" ng-model="searchQuery")
+				label(for="searchQuery") Search
+			table.highlight.animated.fadeInDown(ng-show="showing == 'users'" ng-init="isReversed = false")
+				thead.center-align
+					th(ng-click="sortBy = 'username'; isReversed = !isReversed") Username
+					th(ng-click="sortBy = 'firstname'; isReversed = !isReversed") Firstname
+					th(ng-click="sortBy = 'lastname'; isReversed = !isReversed") Lastname
+					th(ng-click="sortBy = 'email'; isReversed = !isReversed") E-Mail
+					th(ng-click="sortBy = 'gender'; isReversed = !isReversed") Gender
+					th(ng-click="sortBy = 'birthdate'; isReversed = !isReversed") Birthdate
+					th(ng-click="sortBy = 'education_level'; isReversed = !isReversed") Education Level
+					th(ng-click="sortBy = 'created_date'; isReversed = !isReversed") Created at
 					th Actions
 				tbody
-					tr(ng-repeat="u in users")
+					tr(ng-repeat="u in users | orderBy:sortBy:isReversed | filter:searchQuery")
 						td {{u.username}}
 						td {{u.firstname}}
 						td {{u.lastname}}
 						td {{u.email.address}}
+						td {{u.gender}}
+						td {{u.birthdate | date:'yyyy-MMM-dd'}}
+						td {{u.education_level}}
+						td {{u.created_date | date:'yy/M/dd h:mm a'}}
 						td
-							button(ng-click="makeToAdmin(u.username)").btn.orange Make Admin
-							button(ng-click="viewUser(u.username)").btn.green View
-							button(ng-click="deleteUser(u.username)").btn.red Delete
+							a(href="" ng-click="editUser(u)" title="Edit" style="margin-right:10px").fa.fa-pencil.fa-lg.orange-text
+							a(href="" ng-click="viewUser(u)" title="View" style="margin-right:10px").fa.fa-eye.fa-lg.green-text
+							a(href="" ng-click="deleteUser(u)" title="Delete").fa.fa-trash.fa-lg.red-text
 			table.highlight.animated.fadeInDown(ng-show="showing == 'courses'")
 				thead
 					th Code
@@ -43,5 +55,7 @@
 							button(ng-click="viewCourse()").btn.green View
 							button(ng-click="deactivateCourse()").btn.red Deactivate
 		.card-action
-			button(ng-show="showing == 'users'").btn.blue Create a User
-			button(ng-show="showing == 'courses'").btn.blue Create a Course
+			button(ng-show="showing == 'users'" ng-click="showing = 'users-crud-form'; action = 'Create'").btn.blue Create a User
+			button(ng-show="showing == 'courses'" ng-click="showing == 'courses-crud-form'").btn.blue Create a Course
+
+users-crud-form(ng-show="showing == 'users-crud-form'")

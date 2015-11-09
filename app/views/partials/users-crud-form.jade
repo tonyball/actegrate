@@ -1,0 +1,95 @@
+.row
+	.card.col.s12.l10.offset-l1.animated.zoomIn
+		.card-content
+			span.card-title.black-text(ng-if="action != 'Create'") {{action}} User | @{{user.username}}
+			span.card-title.black-text(ng-if="action == 'Create'") Craete an 
+				b A
+				| ctegrator
+
+			form(name="crudForm")
+				fieldset(ng-if="action == 'Create'")
+					.input-field.col.s6
+						img(src="https://maxcdn.icons8.com/Color/PNG/48/Very_Basic/contacts-48.png" title="Contacts" width="48").prefix
+						input(type="text" id="firstname" ng-model="newUser.firstname" required)
+						label(for="firstname") Firstname
+					.input-field.col.s6
+						input(type="text" id="lastname" ng-model="newUser.lastname" required)
+						label(for="lastname") Lastname
+					.input-field.col.s12
+						img(src="https://maxcdn.icons8.com/Color/PNG/48/Music/autograph-48.png" width="48").prefix
+						input(type="text" id="username" ng-model="newUser.username" required pattern="[A-Za-z0-9]{4,}" ng-change="checkDupUsername()").validate
+						label(for="username" data-error="username must contain only letters or numbers at least 4 characters." data-success="available") Username
+					.input-field.col.s6
+						img(src="https://maxcdn.icons8.com/Color/PNG/48/Security/key_2-48.png" title="Key 2" width="48").prefix
+						input(type="password" id="password" name="password" ng-model="newUser.password" required pattern=".{6,}").validate
+						label(for="password" data-error="at least 6 characters" data-success="okay") Password
+					.input-field.col.s6(ng-hide="!crudForm.password.$valid")
+						img(src="https://maxcdn.icons8.com/Color/PNG/48/Very_Basic/lock_2-48.png" title="Lock 2" width="48").prefix
+						input(type="password" id="confirm" ng-model="confirm" required ng-change="isMatch()" ng-valid="newUser.password == confirm")
+						label(for="confirm" data-error="password mismatch!" data-success="match" ng-hide="") Confirm Password
+					.input-field.col.s12
+						img(src="https://maxcdn.icons8.com/Color/PNG/48/User_Interface/email-48.png" title="Email" width="48").prefix
+						input(type="email" id="email" ng-model="newUser.email.address" required ng-change="checkDupEmail()").validate
+						label(for="email" data-error="E-Mail is invalid!" data-success="available") E-Mail
+				fieldset(ng-if="action != 'Create'" ng-disabled="action != 'Edit'")
+					.input-field.col.s4
+						small.grey-text Username
+						input(type="text" id="username" ng-model="user.username")			
+					.input-field.col.s4
+						small.grey-text Firstname
+						input(type="text" id="firstname" ng-model="user.firstname")		
+					.input-field.col.s4
+						small.grey-text Lastname
+						input(type="text" id="lastname" ng-model="user.lastname")
+					.input-field.col.s12
+						small.grey-text E-Mail
+						input(type="email" id="email" ng-model="user.email.address")
+					.input-field.col.s6
+						small.grey-text School
+						input(type="text" id="school" ng-model="user.school")
+					.input-field.col.s6
+						small.grey-text Birthdate
+						input(type="date" id="birthdate" ng-model="user.birthdate")
+					.input-field.col.s6
+						small.grey-text Gender
+						select(ng-model="user.gender").browser-default
+							option(value="" disabled selected) Select your gender
+							option(value="Male") Male
+							option(value="Female") Female
+							option(value="Other") Other
+					.input-field.col.s6
+						small.grey-text Education Level
+						select(ng-model="user.education_level").browser-default
+							option(value="" disabled selected) Select your highest education
+							option(value="Elementary") Elementary
+							option(value="Middle School") Middle School
+							option(value="High School") High School
+							option(value="Vocational School") Vocational School
+							option(value="College") College
+							option(value="Undergraduate") Undergraduate (Bacherlor's)
+							option(value="Graduate") Graduate (Master's)
+							option(value="Doctoral") Doctoral Degree (Ph.D)
+					.input-field.col.s6
+						small.grey-text Location
+						input(type="text" id="location" ng-model="user.location")
+					.input-field.col.s6
+						input(type="checkbox" id="isAdmin" ng-model="user.role").filled-in
+						label(for="isAdmin") Admin
+					.input-field.col.s12
+						small.grey-text Bio (About Me)
+						textarea.materialize-textarea(id="textarea" length="160" ng-model="user.bio").validate
+						label(for="textarea" data-error="maximum 160 characters")
+					.input-field.col.s12
+						small.grey-text Facebook Account
+						input(type="text" ng-model="user_info.fb_link" placeholder="http://www.facebook.com/youraccout")
+					.input-field.col.s12
+						small.grey-text Instagram Account
+						input(type="text" ng-model="user_info.ig_link" placeholder="username")
+					.input-field.col.s12
+						small.grey-text Twitter Account
+						input(type="text" ng-model="user_info.tw_link" placeholder="@username")
+		.card-action
+			center
+				button(ng-click="showing = 'users'").btn.brown Back
+				button(ng-click="saveUser()" ng-if="action == 'Create'" ng-disabled="!crudForm.$valid").btn.blue.waves-effect.waves-light  Save
+				button(ng-click="saveUser()" ng-if="action == 'Edit'").btn.green.waves-effect.waves-light Update

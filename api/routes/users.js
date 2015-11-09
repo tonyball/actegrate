@@ -54,6 +54,17 @@ router.post('/register', function (req, res, next){
 	});
 });
 
+/* POST /users */
+router.post('/changepassword', function (req, res, next){
+	bcrypt.hash(req.body.password, null, null, function(err, hash) {
+		req.body.password = hash
+    	User.findOneAndUpdate({username: req.body.username},req.body, function (err, user){
+			if (err) return next(err);
+			res.json(user);
+		});
+	});
+});
+
 //image decoding funciton
 function decodeBase64Image(dataString) {
   var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),

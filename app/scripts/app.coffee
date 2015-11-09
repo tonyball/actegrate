@@ -21,6 +21,9 @@ angular
       .when '/admin',
         templateUrl: 'views/admin.html'
         controller: 'AdminCtrl'
+      .when '/settings',
+        templateUrl: 'views/settings.html'
+        controller: 'SettingsCtrl'
       .otherwise
         redirectTo: '/'
     $locationProvider.html5Mode(false)

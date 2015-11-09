@@ -14,7 +14,7 @@ mongoose.connect('mongodb://admin:adminactegrate940516@ds049624.mongolab.com:496
   if(err){
     console.log('database connection error', err);
   } else {
-    console.log('actegrate<->database successful');
+    console.log('actegrate<->database successfully connected');
   }
 });
 
