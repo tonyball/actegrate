@@ -84,7 +84,7 @@ function decodeBase64Image(dataString) {
 /* POST /image user file */
 router.post('/avatar', function (req, res, next){
 	var imageBuffer = decodeBase64Image(req.body.file);
-	fs.writeFile('/Users/iTOUCH/actegrate/app/images/avatars/'+req.body.name, imageBuffer.data , 'utf-8', function (err) {
+	fs.writeFile('/Users/iTOUCH/actegrate/dist/images/avatars/'+req.body.name, imageBuffer.data , 'utf-8', function (err) {
 		if (err) 
 		  throw err;
 		res.end();

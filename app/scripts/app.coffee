@@ -24,6 +24,12 @@ angular
       .when '/settings',
         templateUrl: 'views/settings.html'
         controller: 'SettingsCtrl'
+      .when '/help',
+        templateUrl: 'views/help.html'
+        controller: 'HelpCtrl'
+      .when '/courses',
+        templateUrl: 'views/courses.html'
+        controller: 'CoursesCtrl'
       .otherwise
         redirectTo: '/'
     $locationProvider.html5Mode(false)

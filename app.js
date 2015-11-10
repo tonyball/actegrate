@@ -38,12 +38,12 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.use(favicon(path.join(__dirname, 'app', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'dist', 'favicon.ico')));
 app.use(morgan('dev'));
 app.use(bodyParser.json({limit:'50mb'}));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(__dirname + '/app'));
+app.use(express.static(__dirname + '/dist'));
 
 app.use('/',routes);
 app.use('/users', users);

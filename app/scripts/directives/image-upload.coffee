@@ -28,5 +28,6 @@ angular.module('actegrateApp')
     			scope.user_info = data
     			$http.post('http://localhost/users/avatar', {file:imageFile, name:scope.user_info.avatar}).success ->
     				Materialize.toast('<span class=green-text>Your Avatar is Updated</span>', 2000)
+                    $route.reload()
     		return false
   )
